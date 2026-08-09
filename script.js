@@ -33,4 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 延迟 600ms 开始打字，等页面淡入动画完成
     setTimeout(typeWriter, 600);
+    // 自动更新版权年份
+document.addEventListener('DOMContentLoaded', function() {
+    const yearSpan = document.getElementById('year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+});
 });

@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <!-- 响应式视口：确保手机端正常显示 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunny · 个人作品集</title>
+    <!-- ============================================================
+    页面标题 & SEO
+    ============================================================ -->
+    <title>Sunny · 前端开发者 · 个人作品集</title>
+    <meta name="description" content="Sunny 的个人前端作品集，展示 Vue、JavaScript、微信小程序等项目作品，用代码构建优雅体验。">
+    <meta name="keywords" content="前端开发, 作品集, Vue, JavaScript, 微信小程序, 个人网站, Sunny">
+    <!-- ============================================================
+    社交媒体预览卡片（微信 / QQ / 朋友圈分享时显示漂亮卡片）
+    ============================================================ -->
+    <meta property="og:title" content="Sunny · 个人作品集">
+    <meta property="og:description" content="前端开发者 Sunny 的个人作品集，用代码构建优雅体验。展示 Vue、JavaScript、微信小程序等作品。">
+    <meta property="og:image" content="https://sunny-lxy.github.io/portfolio-li/images/avatar.jpg">
+    <meta property="og:url" content="https://sunny-lxy.github.io/portfolio-li/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='Arial, Helvetica, sans-serif' font-weight='700' fill='%232D3E50'>S</text></svg>">
-    <!-- 引入外部样式表 -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <!-- ============================================================
     整个页面容器（用于加载淡入动画）
     ============================================================ -->
@@ -235,7 +247,7 @@
         ============================================================ -->
         <footer class="footer">
             <div class="container footer-container">
-                <p>© 2026 Sunny · 用代码构建优雅体验</p>
+                <p>© <span id="year"></span> Sunny · 用代码构建优雅体验</p>
             </div>
         </footer>
 
