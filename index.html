@@ -330,11 +330,12 @@
                         <a href="mailto:3426017726@qq.com">3426017726@qq.com</a>
                     </div>
 
-                    <!-- 微信（二维码点击放大） -->
+                    <!-- 微信（点击二维码弹出大图） -->
                     <div class="contact-item">
                         <span class="contact-label">💬 微信</span>
                         <span>SunriseYi001</span>
-                        <img src="images/wechat-qr.jpg" id="wechat-qr" style="height:40px; border-radius:4px; cursor:pointer;" alt="微信二维码">
+                        <!-- 注意：onclick 直接调用 JS 函数，不依赖任何外部事件绑定 -->
+                        <img src="images/wechat-qr.jpg" onclick="openQrModal()" style="height:40px; border-radius:4px; cursor:pointer;" alt="微信二维码">
                     </div>
 
                     <!-- 社交媒体 -->
@@ -355,17 +356,15 @@
         </section>
 
         <!-- ============================================================
-        8. 微信二维码弹窗（P1：点击放大）- 纯 CSS :target 方案
+        8. 微信二维码弹窗（P1：点击放大）- 使用 onclick 行内事件
         ============================================================ -->
-        <div class="modal-overlay" id="qr-modal">
-            <div class="modal-content">
-                <!-- 关闭按钮：点击后回到页面顶部，关闭弹窗 -->
-                <a href="#" class="modal-close">&times;</a>
-                <img src="images/wechat-qr.jpg" style="height:30px; border-radius:4px;" alt="微信二维码">
+        <div class="modal-overlay" id="qr-modal" onclick="closeQrModal(event)">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <span class="modal-close" onclick="closeQrModalDirect()">&times;</span>
+                <img src="images/wechat-qr.jpg" alt="微信二维码放大">
                 <p style="margin-top:12px; color:#5A5A5A;">扫一扫添加微信</p>
             </div>
         </div>
-
         <!-- ============================================================
         9. 页脚
         ============================================================ -->

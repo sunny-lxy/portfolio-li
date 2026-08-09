@@ -36,4 +36,43 @@ document.addEventListener('DOMContentLoaded', function() {
         yearSpan.textContent = new Date().getFullYear();
     }
 });
+function openQrModal() {
+    var modal = document.getElementById('qr-modal');
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // 禁止背景滚动
+    }
+}
+
+// 关闭弹窗（点击背景触发）
+function closeQrModal(event) {
+    // 只有点击的是背景本身（而不是内部内容）才关闭
+    if (event.target === event.currentTarget) {
+        var modal = document.getElementById('qr-modal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    }
+}
+
+// 关闭弹窗（点击 × 触发）
+function closeQrModalDirect() {
+    var modal = document.getElementById('qr-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+}
+
+// 按 ESC 键也能关闭弹窗
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        var modal = document.getElementById('qr-modal');
+        if (modal && modal.style.display === 'flex') {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    }
+});
 });
