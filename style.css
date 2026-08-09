@@ -1,0 +1,517 @@
+/* ================================================================
+   1. CSS 变量（全局配色方案）
+   主色、辅色、背景、文字、阴影、动画参数全部统一管理
+   ================================================================ */
+:root {
+    /* 品牌色 */
+    --color-primary: #2D3E50;
+    --color-accent: #4A90D9;
+    /* 背景与卡片 */
+    --color-bg: #FAFAF8;
+    --color-card-bg: #FFFFFF;
+    /* 文字色阶 */
+    --color-text: #1A1A1A;
+    --color-text-secondary: #5A5A5A;
+    --color-text-light: #A0A0A0;
+    /* 边框与阴影 */
+    --color-border: #EBEBE5;
+    --shadow-default: 0 4px 20px rgba(45, 62, 80, 0.06);
+    --shadow-hover: 0 12px 40px rgba(45, 62, 80, 0.14);
+    /* 动画参数（克制质感） */
+    --transition-duration: 0.35s;
+    --transition-easing: ease-out;
+    --scroll-offset: 30px;
+}
+
+/* ================================================================
+   2. 全局重置 & 基础排版
+   ================================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "PingFang SC", "Microsoft YaHei", sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+/* 容器：最大宽度1140px，水平居中，两侧留白 */
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* 每个区块的上下间距（移动端稍小，桌面端稍大） */
+section {
+    padding: 80px 0 60px;
+}
+@media (min-width: 768px) {
+    section {
+        padding: 120px 0 100px;
+    }
+}
+
+/* ================================================================
+   3. 页面加载过渡（整体淡入）
+   ================================================================ */
+.page-wrapper {
+    opacity: 0;
+    animation: pageFadeIn 0.8s ease-out forwards;
+}
+@keyframes pageFadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ================================================================
+   4. 滚动触发动画（淡入 + 上移）
+   配合底部的 JavaScript，当元素进入视口时添加 .is-visible 类
+   ================================================================ */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(var(--scroll-offset));
+    transition: opacity 0.6s var(--transition-easing),
+        transform 0.6s var(--transition-easing);
+}
+.fade-in-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================================================================
+   5. 顶部导航栏（毛玻璃吸顶效果）
+   ================================================================ */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 250, 248, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    padding: 16px 0;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    transition: color var(--transition-duration) var(--transition-easing);
+    position: relative;
+}
+
+/* 导航悬停下划线（克制动效） */
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+    transition: width var(--transition-duration) var(--transition-easing);
+}
+.nav-menu a:hover {
+    color: var(--color-primary);
+}
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* 手机端导航适配 */
+@media (max-width: 600px) {
+    .navbar-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .nav-menu ul {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .nav-menu a {
+        font-size: 0.95rem;
+    }
+}
+
+/* ================================================================
+   6. Hero 区域（大标题 + CTA）
+   ================================================================ */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 40px 0;
+}
+
+.hero-title {
+    font-size: clamp(2.4rem, 8vw, 4.2rem);
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+/* ================================================================
+   7. 按钮样式（主要按钮 & 边框按钮）
+   ================================================================ */
+.btn {
+    display: inline-block;
+    padding: 14px 40px;
+    border-radius: 60px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition-duration) var(--transition-easing);
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: #fff;
+    box-shadow: var(--shadow-default);
+}
+.btn-primary:hover {
+    background-color: #1f2e3d;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    padding: 8px 24px;
+    font-size: 0.9rem;
+}
+.btn-outline:hover {
+    background-color: var(--color-primary);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ================================================================
+   8. 作品展示区（卡片网格）
+   ================================================================ */
+.section-title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 48px;
+    text-align: center;
+}
+
+/* 作品卡片网格 - 适配6个卡片 */
+.works-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+}
+/* 平板：2列 */
+@media (min-width: 640px) {
+    .works-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+/* 桌面：3列 */
+@media (min-width: 1024px) {
+    .works-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 卡片主体：悬停上浮 + 阴影加深 */
+.work-card {
+    background: var(--color-card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-default);
+    transition: transform var(--transition-duration) var(--transition-easing),
+        box-shadow var(--transition-duration) var(--transition-easing);
+}
+.work-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* 卡片截图占位（暂用浅色背景 + 文字，以后换成图片） */
+.card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #e8e8e2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+}
+
+.card-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+/* 技术标签 */
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+.card-tags span {
+    background: var(--color-bg);
+    color: var(--color-text-secondary);
+    font-size: 0.75rem;
+    padding: 4px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--color-border);
+    letter-spacing: 0.3px;
+}
+/* 卡片内图片自适应填满 */
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ================================================================
+   9. 关于我（头像 + 介绍 + 技能标签）
+   ================================================================ */
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    text-align: center;
+}
+@media (min-width: 768px) {
+    .about-container {
+        flex-direction: row;
+        text-align: left;
+        gap: 60px;
+    }
+}
+
+.about-avatar {
+    flex-shrink: 0;
+}
+
+.avatar-placeholder {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: var(--color-text-light);
+    box-shadow: var(--shadow-default);
+}
+/* 头像内图片自适应填满 */
+.avatar-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+.about-content {
+    flex: 1;
+}
+
+.about-text {
+    color: var(--color-text-secondary);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto 16px;
+}
+@media (min-width: 768px) {
+    .about-text {
+        margin: 0 0 16px 0;
+    }
+}
+
+/* 技能标签（深色底，悬停微反馈） */
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: center;
+}
+@media (min-width: 768px) {
+    .skill-tags {
+        justify-content: flex-start;
+    }
+}
+.skill-tags span {
+    background: var(--color-primary);
+    color: #fff;
+    padding: 6px 20px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    letter-spacing: 0.3px;
+    transition: transform var(--transition-duration) var(--transition-easing);
+}
+.skill-tags span:hover {
+    transform: translateY(-2px);
+}
+
+/* ================================================================
+   10. 联系方式（邮箱、微信、社交链接）
+   ================================================================ */
+.contact-container {
+    text-align: center;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.contact-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 20px;
+    width: 100%;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+.contact-item:last-child {
+    border-bottom: none;
+}
+
+.contact-label {
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    min-width: 60px;
+}
+
+.contact-item a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--transition-duration) var(--transition-easing);
+}
+.contact-item a:hover {
+    color: var(--color-primary);
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+.social-links a {
+    color: var(--color-text-secondary);
+}
+.social-links a:hover {
+    color: var(--color-accent);
+}
+
+/* ================================================================
+   11. 页脚
+   ================================================================ */
+.footer {
+    margin-top: 40px;
+    padding: 32px 0;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+}
+
+/* ================================================================
+   12. 移动端额外微调
+   ================================================================ */
+@media (max-width: 480px) {
+    .hero {
+        min-height: 70vh;
+    }
+    .btn {
+        padding: 12px 32px;
+        font-size: 0.95rem;
+    }
+    .card-body {
+        padding: 18px;
+    }
+}
+
+#typed-text {
+    border-right: 2px solid var(--color-primary);  /* 光标颜色与主色一致 */
+    padding-right: 6px;                            /* 光标与文字之间留点空隙 */
+}
+
+/* 光标闪烁动画（克制版本：0.8秒一眨眼） */
+@keyframes blink {
+    0%, 100% { border-color: var(--color-primary); }
+    50% { border-color: transparent; }
+}
+
+/* 给打字机的 span 加上闪烁动画 */
+.typewriter {
+    animation: blink 0.8s step-end infinite;
+}

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- 响应式视口：确保手机端正常显示 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunny · 个人作品集</title>
+
+    <!-- 引入外部样式表 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ============================================================
+    整个页面容器（用于加载淡入动画）
+    ============================================================ -->
+    <div class="page-wrapper">
+
+        <!-- ============================================================
+        1. 顶部导航栏
+        ============================================================ -->
+        <header class="navbar">
+            <div class="container navbar-container">
+                <!-- Logo：你的名字 -->
+                <a href="#" class="logo">Sunny</a>
+
+                <!-- 导航菜单 -->
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="#works">作品</a></li>
+                        <li><a href="#about">关于我</a></li>
+                        <li><a href="#contact">联系方式</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- ============================================================
+        2. Hero 区域
+        ============================================================ -->
+        <section class="hero" id="hero">
+            <div class="container hero-container">
+                <div class="hero-content fade-in-up">
+                    <h1 class="hero-title">
+                        你好，我是 Sunny，<br>
+                        <span id="typed-text" class="typewriter"></span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        专注交互体验与 Vue 生态开发
+                    </p>
+                    <!-- CTA 按钮，点击平滑滚动到作品区 -->
+                    <a href="#works" class="btn btn-primary">查看作品</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        3. 作品展示区（6个项目卡片）
+        ============================================================ -->
+        <section class="works" id="works">
+            <div class="container">
+                <h2 class="section-title fade-in-up">精选作品</h2>
+
+                <div class="works-grid">
+
+                    <!-- 卡片 1：个人作品集网站（my-portfolio） -->
+                    <article class="work-card fade-in-up">
+                        <div class="card-image">
+                            <img src="images/project-portfolio.jpg" alt="个人作品集网站截图">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">个人作品集网站</h3>
+                            <p class="card-desc">采用组件化设计、数据驱动渲染的 Vue 作品集，部署在 GitHub Pages 上。</p>
+                            <div class="card-tags">
+                                <span>Vue</span>
+                                <span>CSS</span>
+                            </div>
+                            <a href="https://github.com/sunny-lxy/my-portfolio" target="_blank" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </article>
+
+                    <!-- 卡片 2：企业名片模板（business-card-template） -->
+                    <article class="work-card fade-in-up">
+                        <div class="card-image">
+                            <img src="images/project-card.jpg" alt="企业名片模板截图">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">企业名片模板</h3>
+                            <p class="card-desc">基于 Vue 构建的企业名片模板，风格简约现代，适合个人品牌展示。</p>
+                            <div class="card-tags">
+                                <span>Vue</span>
+                            </div>
+                            <a href="https://github.com/sunny-lxy/business-card-template" target="_blank" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </article>
+
+                    <!-- 卡片 3：交互式圣诞灯串（Christmas-Lights） -->
+                    <article class="work-card fade-in-up">
+                        <div class="card-image">
+                            <img src="images/project-lights.jpg" alt="交互式圣诞灯串截图">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">交互式圣诞灯串</h3>
+                            <p class="card-desc">用 HTML + CSS + JavaScript 打造的交互式圣诞灯串，点击灯泡切换亮灭状态，节日氛围感十足。</p>
+                            <div class="card-tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <a href="https://github.com/sunny-lxy/Christmas-Lights" target="_blank" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </article>
+
+                    <!-- 卡片 4：待办事项应用（todo-list） -->
+                    <article class="work-card fade-in-up">
+                        <div class="card-image">
+                            <img src="images/project-todo.jpg" alt="待办事项应用截图">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">待办事项应用</h3>
+                            <p class="card-desc">基于 Vue 构建的极简待办事项工具，支持增删改任务与本地存储，交互流畅。</p>
+                            <div class="card-tags">
+                                <span>Vue</span>
+                            </div>
+                            <a href="https://github.com/sunny-lxy/todo-list" target="_blank" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </article>
+
+                    <!-- 卡片 5：情绪花园（mood-garden） -->
+                    <article class="work-card fade-in-up">
+                        <div class="card-image">
+                            <img src="images/project-garden.jpg" alt="情绪花园小程序截图">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">情绪花园 · 智能情绪记录</h3>
+                            <p class="card-desc">微信小程序，智能记录与分析用户每日情绪状态，界面清新治愈，帮助用户关注心理健康。</p>
+                            <div class="card-tags">
+                                <span>JavaScript</span>
+                                <span>微信小程序</span>
+                            </div>
+                            <a href="https://github.com/sunny-lxy/mood-garden" target="_blank" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </article>
+
+                    <!-- 卡片 6：数字工作台（my-workbench） -->
+                    <article class="work-card fade-in-up">
+                        <div class="card-image">
+                            <img src="images/project-workbench.jpg" alt="数字工作台截图">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">数字工作台</h3>
+                            <p class="card-desc">集塔罗牌日签、任务清单、学习资源于一体的轻量级前端工作台，数据持久化存储于 localStorage。</p>
+                            <div class="card-tags">
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <a href="https://github.com/sunny-lxy/my-workbench" target="_blank" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        4. 关于我
+        ============================================================ -->
+        <section class="about" id="about">
+            <div class="container about-container">
+                <!-- 头像 -->
+                <div class="about-avatar fade-in-up">
+                    <div class="avatar-placeholder">
+                        <img src="images/avatar.jpg" alt="Sunny头像">
+                    </div>
+                </div>
+
+                <!-- 介绍内容 -->
+                <div class="about-content fade-in-up">
+                    <h2 class="section-title" style="text-align:left; margin-bottom:20px;">关于我</h2>
+                    <p class="about-text">
+                        你好！我是 Sunny，一名热爱前端开发的创作者。善于将设计想法转化为可交互的网页体验。
+                    </p>
+                    <p class="about-text">
+                        我相信技术不只是实现功能，更是为使用者带来舒适的情绪体验。
+                    </p>
+                    <!-- 技能标签 -->
+                    <div class="skill-tags">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>Vue</span>
+                        <span>微信小程序</span>
+                        <span>响应式设计</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        5. 联系方式
+        ============================================================ -->
+        <section class="contact" id="contact">
+            <div class="container contact-container">
+                <h2 class="section-title fade-in-up">保持联系</h2>
+
+                <div class="contact-info fade-in-up">
+                    <!-- 邮箱 -->
+                    <div class="contact-item">
+                        <span class="contact-label">📧 邮箱</span>
+                        <a href="mailto:3426017726@qq.com">3426017726@qq.com</a>
+                    </div>
+
+                    <!-- 微信 -->
+                    <div class="contact-item">
+                        <span class="contact-label">💬 微信</span>
+                        <span>SunriseYi001</span>
+                        <img src="images/wechat-qr.jpg" style="height:30px; border-radius:4px;" alt="微信二维码">
+                    </div>
+
+                    <!-- 社交媒体 -->
+                    <div class="contact-item">
+                        <span class="contact-label">🌐 社交</span>
+                        <div class="social-links">
+                            <a href="https://github.com/sunny-lxy" target="_blank">GitHub</a>
+                            <span>QQ: 3426017726</span>
+                            <a href="#">微博</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        6. 页脚
+        ============================================================ -->
+        <footer class="footer">
+            <div class="container footer-container">
+                <p>© 2026 Sunny · 用代码构建优雅体验</p>
+            </div>
+        </footer>
+
+    </div>
+    <!-- .page-wrapper 结束 -->
+
+    <!-- 引入外部 JavaScript 文件 -->
+    <script src="script.js"></script>
+
+</body>
+</html>
