@@ -701,11 +701,8 @@ section {
     min-width: 200px;
 }
 
-/* ================================================================
-   新增：微信二维码弹窗（P1）
-   ================================================================ */
+/* 弹窗背景遮罩 — 默认隐藏 */
 .modal-overlay {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -713,16 +710,19 @@ section {
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
     z-index: 9999;
+    display: none;
     justify-content: center;
     align-items: center;
 }
 
-.modal-overlay.active {
+/* 当 URL 中有 #qr-modal 时，弹窗显示 */
+.modal-overlay:target {
     display: flex;
 }
 
+/* 弹窗卡片 */
 .modal-content {
-    background: #fff;
+    background: #ffffff;
     padding: 32px;
     border-radius: 20px;
     max-width: 400px;
@@ -730,12 +730,13 @@ section {
     text-align: center;
     position: relative;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    animation: modalFadeIn 0.3s ease-out;
+    animation: modalFadeIn 0.25s ease-out;
 }
 
+/* 弹窗淡入动画 */
 @keyframes modalFadeIn {
     0% {
-        transform: scale(0.9);
+        transform: scale(0.92);
         opacity: 0;
     }
     100% {
@@ -744,21 +745,24 @@ section {
     }
 }
 
+/* 弹窗内的二维码图片 */
 .modal-content img {
     width: 100%;
     max-width: 280px;
     border-radius: 8px;
 }
 
+/* 关闭按钮（×） */
 .modal-close {
     position: absolute;
     top: 10px;
     right: 18px;
     font-size: 2rem;
-    color: var(--color-text-light);
-    cursor: pointer;
-    transition: color var(--transition-duration) var(--transition-easing);
+    font-weight: 300;
+    color: #A0A0A0;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 .modal-close:hover {
-    color: var(--color-primary);
+    color: #2D3E50;
 }
